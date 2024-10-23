@@ -6,13 +6,32 @@ on:
       - main
 
 jobs:
-  run-tests:
-    if: false # this will cause the job to be skipped - delete to enable 
-    name: run-tests
+  run-checks:
+    name: run-checks
     runs-on: ubuntu-latest
-    # implement me
 
-  deploy-lambda:
-    if: false # this will cause the job to be skipped - delete to enable 
-    name: deploy-lambda
-    # implement me
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Create Environment
+        run: make create-environment
+
+      - name: Build requirements
+        run: make requirements
+
+      - name: Dev-setup
+        run: make dev-setup
+
+      - name: Run all checks
+        run: run-checks
+
+  # deploy-lambda:
+  #   if: false # this will cause the job to be skipped - delete to enable
+  #   name: deploy-lambda
+  #   # implement me
