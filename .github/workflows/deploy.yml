@@ -31,7 +31,7 @@ jobs:
       - name: Run all checks
         run: run-checks
 
-  # deploy-lambda:
-  #   if: false # this will cause the job to be skipped - delete to enable
-  #   name: deploy-lambda
-  #   # implement me
+  deploy-lambda:
+    if: false # this will cause the job to be skipped - delete to enable
+    name: deploy-lambda
+    # implement me
